@@ -13,7 +13,6 @@ class Solution:
         """
 
         # Move larger elements to the back
-
         # Move till one of the nums are empty
         while m > 0 and n > 0:
             if nums1[m - 1] >= nums2[n - 1]:
