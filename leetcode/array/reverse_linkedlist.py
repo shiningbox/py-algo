@@ -14,10 +14,22 @@ def print_list(node):
         node = node.next
 
 class Solution:
-    pass
+    # Reverse list
+    def reverse_list(self, head):
+        node = head
+        rh = None
+        while node:
+            temp = node.next
+            node.next = rh
+            rh = node
+            node = temp
+        return rh
 
 
 def test():
+
+    solution = Solution()
+
     node1 = ListNode(1)
     node2 = ListNode(2)
     node3 = ListNode(6)
@@ -33,16 +45,8 @@ def test():
     node5.next = node6
     node6.next = node7
 
-    node21 = ListNode(6)
-    node22 = ListNode(1)
-    node21.next = node22
-
-    solution = Solution()
-    # test method
-    new_head = solution.removeElements(node1, 6)
-    print_list(new_head)
-    new_head = solution.removeElements(node21, 6)
-    print_list(new_head)
+    r_head = solution.reverse_list(node1)
+    print_list(r_head)
 
 
 test()
