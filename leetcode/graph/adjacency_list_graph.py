@@ -1,4 +1,4 @@
-from graph.adt import Graph, Node
+from leetcode.graph.adt import Graph, Node
 
 class Vertex(Node):
 
