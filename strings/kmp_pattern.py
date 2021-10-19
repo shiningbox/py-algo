@@ -1,7 +1,7 @@
 from strings.string_ops import MyString
 
 
-class KMP():
+class KMP:
 
     def __init__(self):
         pass
