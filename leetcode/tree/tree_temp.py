@@ -45,6 +45,8 @@ def test():
 
     node444 = TreeNode(4, None, None)
     node44.right = node444
+
+
     # test method
     # print(solution.method("test"))
 
