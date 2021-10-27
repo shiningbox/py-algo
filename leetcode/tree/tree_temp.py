@@ -35,20 +35,20 @@ def test():
     node4 = TreeNode(4, None, None)
     root.right = node4
 
-    node44 = TreeNode(4, None, None)
-    node4.left = node44
+    node1 = TreeNode(1, None, None)
+    node2.left = node1
+
+    node3 = TreeNode(3, None, None)
+    node4.left = node3
+    node6 = TreeNode(6, None, None)
+    node4.right = node6
+
     node5 = TreeNode(5, None, None)
-    node4.right = node5
+    node6.left = node5
 
-    node33 = TreeNode(3, None, None)
-    node44.left = node33
+    node9 = TreeNode(9, None, None)
+    node6.right = node9
 
-    node444 = TreeNode(4, None, None)
-    node44.right = node444
-
-
-    # test method
-    # print(solution.method("test"))
-
+    pre_order_traversal(root, "")
 
 test()

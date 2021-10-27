@@ -65,7 +65,7 @@ class DequeImpl(Deque):
         new_node = DLNode(obj, second_last, self.trailer)
         # second_last -> New
         second_last.next = new_node
-        # new <- prev
+        # new <- left_prev
         self.trailer.prev = new_node
         self.size += 1
 
