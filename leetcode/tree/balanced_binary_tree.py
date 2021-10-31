@@ -70,7 +70,7 @@ def test():
     node32 = TreeNode(4, None, None)
     node21.left = node31
     node21.right = node32
-    #pre_order_traversal(root2, "")
+    #pre_order_traversal(node2, "")
 
     print(solution.isBalanced(root))
     print(solution.isBalanced(root2))

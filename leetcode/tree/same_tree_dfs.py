@@ -108,8 +108,8 @@ def test():
     print(solution.isSameTree(root2, root3))
     print(solution.isSameTree(None, None))
 
-    #solution.dfs_stack(root1)
-    #solution.bfs_queue(root1)
+    #solution.dfs_stack(node1)
+    #solution.bfs_queue(node1)
 
 
 test()
