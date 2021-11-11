@@ -75,7 +75,7 @@ class Stack(ABC):
         raise StackException()
 
 
-# Node for linked list
+# Node for linked linkedlist
 class Node:
 
     def __init__(self):

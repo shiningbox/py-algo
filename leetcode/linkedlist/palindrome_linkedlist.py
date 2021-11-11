@@ -15,7 +15,7 @@ def print_list(node):
 
 class Solution:
 
-    # Reverse list
+    # Reverse linkedlist
     def reverse_list(self, head):
         node = head
         rh = None

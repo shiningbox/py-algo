@@ -4,11 +4,11 @@ from list.adt import Stack, StackException
 class ArrayStack(Stack):
 
     def __init__(self):
-        # A list represents
+        # A linkedlist represents
         self.s = []
         # top index
         self.top_index = -1
-        # initial a list with NaN values
+        # initial a linkedlist with NaN values
         self.s = [None] * 1000
 
     def push(self, obj: object):

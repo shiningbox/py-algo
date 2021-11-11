@@ -49,7 +49,7 @@ class Tree(PositionalContainer):
     def parent(self, node: LinkTreeNode) -> LinkTreeNode:
         pass
 
-    # Ordered list if it is for an ordered tree
+    # Ordered linkedlist if it is for an ordered tree
     @abstractmethod
     def children(self, node: LinkTreeNode) -> list:
         pass
