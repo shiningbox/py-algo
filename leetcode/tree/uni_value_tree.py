@@ -23,7 +23,29 @@ def pre_order_traversal(node: TreeNode, indent):
 
 
 class Solution:
-    pass
+
+    def __init__(self):
+        self.pre_value = None
+
+    def dfs(self, node: TreeNode):
+        tree_stack = [node]
+        while tree_stack:
+            top = tree_stack.pop()
+
+            if top.val != self.pre_value:
+                return False
+
+            if top.right:
+                tree_stack.append(top.right)
+
+            if top.left:
+                tree_stack.append(top.left)
+
+        return True
+
+    def isUnivalTree(self, root: Optional[TreeNode]) -> bool:
+        self.pre_value = root.val
+        return self.dfs(root)
 
 
 def test():
@@ -51,6 +73,6 @@ def test():
 
     pre_order_traversal(root, "")
 
-    #print(solution.method(root))
+    print(solution.isUnivalTree(root))
 
 test()

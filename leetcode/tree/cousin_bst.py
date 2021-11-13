@@ -23,7 +23,32 @@ def pre_order_traversal(node: TreeNode, indent):
 
 
 class Solution:
-    pass
+
+    def __init__(self):
+        self.depth_dict = {}
+
+    def pre_order_traversal(self, parent_val, node: TreeNode, depth, x, y):
+        # Root
+        if node:
+            if node.val == x:
+                self.depth_dict[x] = (parent_val, depth)
+            if node.val == y:
+                self.depth_dict[y] = (parent_val, depth)
+        else:
+            return
+
+        print(node.val)
+
+        depth += 1
+        # Left
+        self.pre_order_traversal(node.val, node.left, depth, x, y)
+        # Right
+        self.pre_order_traversal(node.val, node.right, depth, x, y)
+
+    def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
+        self.pre_order_traversal(None, root, 0, x, y)
+        print(self.depth_dict)
+        return self.depth_dict[x][0] != self.depth_dict[y][0] and self.depth_dict[x][1] == self.depth_dict[y][1]
 
 
 def test():
@@ -49,8 +74,8 @@ def test():
     node9 = TreeNode(9, None, None)
     node6.right = node9
 
-    pre_order_traversal(root, "")
+    #pre_order_traversal(root, "")
 
-    #print(solution.method(root))
+    print(solution.isCousins(root, 1, 9))
 
 test()
