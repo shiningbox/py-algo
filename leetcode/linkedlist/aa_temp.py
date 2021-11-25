@@ -8,41 +8,37 @@ class ListNode:
          self.next = next
 
 class Solution:
-    def hasCycle(self, head: ListNode) -> bool:
 
-        if not head:
-            return False
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        pass
 
-        chaser = head
-        walker = head
-
-        # If there is a cycle, chaser will catch walker eventually
-        while walker.next and chaser.next.next:
-            walker = walker.next
-            chaser = chaser.next.next
-
-        return False
 
 def print_list(node):
     while node is not None:
         print(node.val)
         node = node.next
 
+
 def test():
     solution = Solution()
     head = ListNode(3)
     node2 = ListNode(2)
     head.next = node2
-    node3 = ListNode(0)
-    node2.next = node3
-    node4 = ListNode(-4)
-    node3.next = node4
-    print(solution.hasCycle(head))
+    node0 = ListNode(0)
+    node2.next = node0
+    nodem4 = ListNode(-4)
+    node0.next = nodem4
 
+    head2 = ListNode(3)
+    node0 = ListNode(0)
+    head2.next = node0
+    nodem4 = ListNode(-4)
+    node0.next = nodem4
 
-    #print(solution.method(head))
+    print(solution.getIntersectionNode(head))
 
-
+    # print(solution.method(head))
 
 
 test()
+
