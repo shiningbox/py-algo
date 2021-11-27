@@ -12,7 +12,7 @@ class HeapPriorityQueue(PriorityQueue):
         # Key in children should always larger than its parent
         # A complete binary tree is complete meaning
         ## starting_node of i, 0<=i<=h-1, is 2**i nodes
-        ## All internal nodes at h-1 should be at the left of the tree
+        ## All internal nodes at h-1 should be at the left_stack of the tree
 
         # Better to use array based binary tree to implement a heap because heap will not have much wasting spaces
         #
@@ -82,9 +82,9 @@ class HeapPriorityQueue(PriorityQueue):
     # The key is to find insertion position z, an external starting_node to expand:
     ## In general z = n + 1, n is the number of internal nodes
     ## 1. If T is empty, z = root
-    ## 2. If the last starting_node is the right-most starting_node on its level, i.e., completely full, then z is the left-most
+    ## 2. If the last starting_node is the right_stack-most starting_node on its level, i.e., completely full, then z is the left_stack-most
     ## of the bottom level external starting_node
-    ## 3. If not completely full, then z is the external starting_node right to the last_node
+    ## 3. If not completely full, then z is the external starting_node right_stack to the last_node
     # After expand_external(z), z becomes an internal starting_node and the last position
     # After insertion, the tree should be complete
     # up-heap-bubbling

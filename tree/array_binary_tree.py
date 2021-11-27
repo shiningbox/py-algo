@@ -2,8 +2,8 @@ from tree.adt import Tree, ArrayTreeNode,  TreeException
 
 # starting_node rank:
 # p(origin_v) = 1 if origin_v is root
-# p(origin_v) = 2p(u), origin_v is the left child of u
-# p(origin_v) = 2p(u) + 1, if origin_v is the right child of u
+# p(origin_v) = 2p(u), origin_v is the left_stack child of u
+# p(origin_v) = 2p(u) + 1, if origin_v is the right_stack child of u
 # Wasting space, need at most 2**n+1 - 1 space
 
 
@@ -117,7 +117,7 @@ class ArrayBinaryTree:
             self.node_array[old_rank] = None
             return
         else:
-            # If it is an internal starting_node, move its left and right child to new position on the upper level
+            # If it is an internal starting_node, move its left_stack and right_stack child to new position on the upper level
             left_child = self.left_child(node)
             right_child = self.right_child(node)
             # Move the starting_node to its parent
@@ -212,7 +212,7 @@ def simple_testing():
     node_to_be_removed = tree.right_child(r2_node)
     tree.remove_external_above(node_to_be_removed)
     tree.print_subtree(tree.root())
-    print("After remove s2.2.1 left None")
+    print("After remove s2.2.1 left_stack None")
     s221 = tree.right_child(r1_node)
     s221_left = tree.left_child(s221)
     tree.remove_external_above(s221_left)

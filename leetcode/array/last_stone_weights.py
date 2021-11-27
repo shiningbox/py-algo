@@ -10,11 +10,11 @@ class Solution:
         left = node_idx * 2 + 1
         right = node_idx * 2 + 2
 
-        # if left node is larger
+        # if left_stack node is larger
         if left < n_len and nums[left] > nums[largest]:
             largest = left
 
-        # if right node is larger
+        # if right_stack node is larger
         if right < n_len and nums[right] > nums[largest]:
             largest = right
 

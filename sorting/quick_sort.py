@@ -20,21 +20,21 @@ class QuickSort:
         pivot_elem = sequence.elem_at_rank(right_bound)
         left_index = left_bound
         right_index = right_bound - 1
-        # scan until left index meets right index
-        # Find smaller elements (less than pivot) that needs to be moved to left sequence
-        # Find larger elements (larger than pivot) that needs to be moved to right sequence
+        # scan until left_stack index meets right_stack index
+        # Find smaller elements (less than pivot) that needs to be moved to left_stack sequence
+        # Find larger elements (larger than pivot) that needs to be moved to right_stack sequence
         while left_index <= right_index:
-            # Find the left index that are larger than pivot, which needs to be swapped
+            # Find the left_stack index that are larger than pivot, which needs to be swapped
             while left_index <= right_index and sequence.elem_at_rank(left_index) <= pivot_elem:
                 left_index += 1
-            # Find the right index that are smaller than pivot, which needs to be swapped
+            # Find the right_stack index that are smaller than pivot, which needs to be swapped
             while right_index >= left_index and sequence.elem_at_rank(right_index) >= pivot_elem:
                 right_index -= 1
             if left_index < right_index:
-                # Swap left index and right index
+                # Swap left_stack index and right_stack index
                 sequence.swap(left_index, right_index)
         sequence.swap(left_index, right_bound)
-        # Sort left sequence
+        # Sort left_stack sequence
         QuickSort.sort(left_bound, left_index-1, sequence)
         QuickSort.sort(left_index+1, right_bound, sequence)
 

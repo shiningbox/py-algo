@@ -4,7 +4,7 @@ from adt import Tree, LinkTreeNode, TreeException
 
 # External nodes is 1 more than internal nodes
 ## Repeating remove above external starting_node (while it is still a proper binary tree), till to the root
-## Then remove one of the two child starting_node, then left only one external starting_node
+## Then remove one of the two child starting_node, then left_stack only one external starting_node
 # level d has at most 2d nodes
 class LinkedBinaryTree(LinkTree):
 
@@ -109,7 +109,7 @@ def binary_tree_testing():
     node36 = LinkTreeNode("3", node23, None, Tree)
     tree.set_children(node23, [node35, node36])
 
-    print("Left and right children of node12 is: ")
+    print("Left and right_stack children of node12 is: ")
     print(tree.left_child(node12).element)
     print(tree.right_child(node12).element)
 

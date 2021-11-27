@@ -27,10 +27,10 @@ class Solution:
                 return mid
 
             if target < nums[mid]:
-                # go to left half
+                # go to left_stack half
                 return self.binary_search(nums, l, mid - 1, target)
             else:
-                # go to the right half
+                # go to the right_stack half
                 return self.binary_search(nums, mid + 1, h, target)
 
     # Find the target element

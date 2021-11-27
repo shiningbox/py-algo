@@ -17,8 +17,8 @@ class Solution:
         if not root:
             return sum
 
-        # If root has left child
-        # and left child is a leaf
+        # If root has left_stack child
+        # and left_stack child is a leaf
         if root.left and not root.left.left and not root.left.right:
             sum += root.left.val
 

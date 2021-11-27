@@ -27,10 +27,10 @@ class Solution:
                 print(top.val)
 
             # Push its next level nodes to stack
-            # Push the right child of top to stack
+            # Push the right_stack child of top to stack
             if top.right is not None:
                 stack.append(top.right)
-            # Push the left child to stack as the current top
+            # Push the left_stack child to stack as the current top
             if top.left is not None:
                 stack.append(top.left)
 

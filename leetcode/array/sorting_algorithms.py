@@ -1,9 +1,9 @@
 
 # Divide and conquer
 # Choose pivot
-# Smaller ones on the left
-# Larger ones on the right
-# Fine-tune left subarray and right subarray
+# Smaller ones on the left_stack
+# Larger ones on the right_stack
+# Fine-tune left_stack subarray and right_stack subarray
 def quick_sort(l, r, array: list):
     # Find three sequences, L, P, R, bounded by 0, to Pivot -1, Pivot, Pivot + 1 to right_bound
     # Note that, L or R could be none, if less than 3
@@ -17,18 +17,18 @@ def quick_sort(l, r, array: list):
     p = array[r]
     l_i = l
     r_i = r - 1
-    # scan until left index meets right index
-    # Find smaller elements (less than pivot) that needs to be moved to left sequence
-    # Find larger elements (larger than pivot) that needs to be moved to right sequence
+    # scan until left_stack index meets right_stack index
+    # Find smaller elements (less than pivot) that needs to be moved to left_stack sequence
+    # Find larger elements (larger than pivot) that needs to be moved to right_stack sequence
     while l_i <= r_i:
-        # Find the left index that are larger than pivot, which needs to be swapped
+        # Find the left_stack index that are larger than pivot, which needs to be swapped
         while l_i <= r_i and array[l_i] <= p:
             l_i += 1
-        # Find the right index that are smaller than pivot, which needs to be swapped
+        # Find the right_stack index that are smaller than pivot, which needs to be swapped
         while l_i <= r_i and array[r_i] >= p:
             r_i -= 1
         if l_i < r_i:
-            # Swap left index and right index
+            # Swap left_stack index and right_stack index
             temp = array[l_i]
             array[l_i] = array[r_i]
             array[r_i] = temp
@@ -36,7 +36,7 @@ def quick_sort(l, r, array: list):
     temp = array[l_i]
     array[l_i] = array[r]
     array[r] = temp
-    # Sort left sequence
+    # Sort left_stack sequence
     quick_sort(l, l_i - 1, array)
     quick_sort(l_i + 1, r, array)
 
@@ -54,11 +54,11 @@ def bottom_up(node_idx, n_len, nums):
     left = node_idx * 2 + 1
     right = node_idx * 2 + 2
 
-    # if left node is larger
+    # if left_stack node is larger
     if left < n_len and nums[left] > nums[largest]:
         largest = left
 
-    # if right node is larger
+    # if right_stack node is larger
     if right < n_len and nums[right] > nums[largest]:
         largest = right
 

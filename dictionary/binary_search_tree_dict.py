@@ -51,7 +51,7 @@ class BinarySearchTreeDict(Dictionary):
 
         # If there is a key already exists
         while self.bt.is_internal(node_to_insert):
-            # Go to its right child
+            # Go to its right_stack child
             node_to_insert = self.bt.right_child(node_to_insert)
             if self.bt.is_external(node_to_insert):
                     break
@@ -63,7 +63,7 @@ class BinarySearchTreeDict(Dictionary):
             node_to_insert.element = new_node_item
             self.bt.expand_external(node_to_insert)
 
-    # make sure no hole left in the tree after removal
+    # make sure no hole left_stack in the tree after removal
     # thus, if it is an internal starting_node with two non-internal children
     # need to move its next starting_node (in inorder traverse) to fill its position
     def remove(self, key: object) -> object:
@@ -86,7 +86,7 @@ class BinarySearchTreeDict(Dictionary):
         else:
             # Keep the reference of the removal starting_node to be swapped
             swap_node = removal_node
-            # Find the top left child of right child, which is the next element of inorder traverse
+            # Find the top left_stack child of right_stack child, which is the next element of inorder traverse
             removal_node = right_child
             while self.bt.is_internal(removal_node):
                 removal_node = self.bt.left_child(removal_node)
@@ -108,12 +108,12 @@ class BinarySearchTreeDict(Dictionary):
         if node.element.key == key:
             return node
 
-        # If the current starting_node's key less than the key, search its left child
+        # If the current starting_node's key less than the key, search its left_stack child
         if key >= node.element.key:
             left_child = self.bt.right_child(node)
             return self.binary_tree_search(key, left_child)
 
-        # If the current starting_node's key less than the key, search its left child
+        # If the current starting_node's key less than the key, search its left_stack child
         if key < node.element.key:
             left_child = self.bt.left_child(node)
             return self.binary_tree_search(key, left_child)

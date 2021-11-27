@@ -5,7 +5,7 @@ class Solution(object):
 
     def findComplement(self, num):
         i = 1
-        # left shift 1 till it is larger than num
+        # left_stack shift 1 till it is larger than num
         # e.g., 101
         # 001 -> 010 -> 100 -> 1000
         # then 1000 - 1 = 8 - 1 = 7 = 111

@@ -7,10 +7,10 @@ class Solution:
         rows = len(grid)
         cols = len(grid[0])
         adjacents = []
-        # left
+        # left_stack
         if j - 1 >= 0 and grid[i][j-1] == 1:
             adjacents.append((i, j-1))
-        # right
+        # right_stack
         if j + 1 < cols and grid[i][j+1] == 1:
             adjacents.append((i, j+1))
         # top

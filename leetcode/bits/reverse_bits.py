@@ -35,7 +35,7 @@ class Solution:
     def reverseBits(self, n):
         res = 0
         for i in range(digits):
-            # Move res to left to receive digits from n last
+            # Move res to left_stack to receive digits from n last
             # like append the last digit of n to first digit of res
             res = (res << 1) | (n & 1)
             # remove the last digit of n

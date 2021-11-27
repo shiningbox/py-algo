@@ -11,7 +11,7 @@ print(a | b)
 print(a ^ b)
 # NOT, 4
 print(a ^ b)
-# Shift left, 0010
+# Shift left_stack, 0010
 print(a << 1)
-# Shift right, 0010
+# Shift right_stack, 0010
 print(b >> 1)

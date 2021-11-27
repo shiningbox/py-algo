@@ -47,8 +47,8 @@ class Multiway24Tree(LinkTree):
             if len(node.children) == 5 and \
                     node_dict.size() == 5:
                 # k0, k1, k2, k3, max
-                # left = k0, k1
-                # right = k3, max
+                # left_stack = k0, k1
+                # right_stack = k3, max
                 # parent = k2
                 # Find the parent of node
                 parent = self.parent(node)
@@ -66,7 +66,7 @@ class Multiway24Tree(LinkTree):
                 # Create two new nodes
                 left_child = LinkTreeNode(None, parent, [], None)
                 self.initial_dict(left_child)
-                # Insert the old (k0, v0), (k1, v1) into left node
+                # Insert the old (k0, v0), (k1, v1) into left_stack node
                 k0 = node_dict.element_at_i(0).key
                 v0 = node_dict.element_at_i(0).element
                 k1 = node_dict.element_at_i(1).key

@@ -22,7 +22,7 @@ class Solution:
         values.append(root.val)
         self.traversal(values, root.right)
 
-    # left -> root -> right
+    # left_stack -> root -> right_stack
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         values = []
         self.traversal(values, root)

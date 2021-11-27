@@ -28,8 +28,8 @@ class Solution:
         # | or
         # ^ XOR
         # ~ Not
-        # << zero fill shift left
-        # >> zero fill shift right
+        # << zero fill shift left_stack
+        # >> zero fill shift right_stack
         # chr(48) = 0
         # chr(49) = 1
         sum = a ^ b ^ carry + 48

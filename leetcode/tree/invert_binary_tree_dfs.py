@@ -23,7 +23,7 @@ class Solution:
                 if not node.left and not node.right:
                     continue
                 else:
-                    # swap the left and right child of root
+                    # swap the left_stack and right_stack child of root
                     temp = node.left
                     node.left = node.right
                     node.right = temp
