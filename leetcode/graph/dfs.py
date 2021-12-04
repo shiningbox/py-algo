@@ -1,82 +1,82 @@
-from adjacency_list_graph import Node, AdjacencyListGraph
-from adt import Graph
-from graph_viz import create_simple_graph, visualize_ungraph
+# Python3 program to print DFS traversal
+# from a given given graph
 
+# This class represents a directed graph using
+# adjacency list representation
 
-class DFS:
+class Graph:
 
-    def __init__(self):
-        self.graph = None
-        self.marked_vertices = {}
-        self.marked_edges = {}
-        self.spanning_tree = []
+    # Constructor
+    def __init__(self, vertices):
 
-    def mark_edge(self, edge: Node):
-        edge_key = edge.element()
-        self.marked_edges[edge_key] = edge
+        # No. of vertices
+        self.vertices = vertices
 
-    def mark_vertex(self, vertex: Node):
-        vertex_key = vertex.element()
-        self.marked_vertices[vertex_key] = vertex
+        # default dictionary to store graph
+        self.graph = {}
+        for v in self.vertices:
+            self.graph[v] = []
 
-    def is_marked(self, n: Node):
-        key = n.element()
-        return key in self.marked_edges or key in self.marked_vertices
+        self.paths = []
 
-    def execute(self, graph: AdjacencyListGraph, start: Node, data: object):
-        self.graph = graph
-        return None
+    # function to add an edge to graph
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
 
-    def start_visit(self, node: Node):
-        pass
+    def dfs_visit(self, v, visited):
+        visited.add(v)
+        # Recur for all the vertices
+        # adjacent to this vertex
+        for neighbor in self.graph[v]:
+            if neighbor not in visited:
+                self.dfs_visit(neighbor, visited)
 
-    def end_visit(self, node: Node):
-        pass
+    # The function to do DFS traversal. It uses
+    def dfs(self, v):
+        visited = set()
+        self.dfs_visit(v, visited)
+        return visited
 
-    def traverse_back(self, edge: Node, vertex: Node):
-        edge.discovered = "back"
+    def dfs_path(self, u, v, visited, path):
 
-    def dfs_visit(self, origin_v: Node):
-        origin_v_key = origin_v.element()
-        self.mark_vertex(origin_v)
-        self.spanning_tree.append(origin_v)
-        self.start_visit(origin_v)
-        edges = self.graph.adjacent_edges(origin_v_key)
-        for next_edge in edges:
-            edge_key = next_edge.element()
-            if not self.is_marked(next_edge):
-                # Visit the edge only once
-                self.mark_edge(next_edge)
-                destination_v = self.graph.opposite(origin_v_key, edge_key)
-                if not self.is_done():
-                    # If the edge's opposite vertex is not covered, mark the edge as discover
-                    if not self.is_marked(destination_v):
-                        next_edge.discovered = "discover"
-                        self.dfs_visit(destination_v)
-                    else:
-                    # If the edge's opposite vertex is already covered, mark the edge as discover
-                    # and traverse back
-                        self.traverse_back(next_edge, origin_v)
-        # All node v's edges have been explored
-        self.end_visit(origin_v)
-        return self.spanning_tree
+        # Mark the current node as visited
+        visited[u] = True
+        path.append(u)
+        if u == v:
+            self.paths.append(list(path))
+        else:
+            # Recur for all the vertices
+            # adjacent to this vertex
+            for n in self.graph[u]:
+                if not visited[n]:
+                    self.dfs_path(n, v, visited, path)
 
-    def print_spanning_tree(self):
-        result = ""
-        for vertex in self.spanning_tree:
-            result += vertex.element() + ">"
-        result = result[:-1]
-        print(result)
+        # Now vertex u has all been visited
+        # mark it as unvisited
+        path.pop()
+        visited[u] = False
 
-    def is_done(self):
-        return False
+    def dfs_paths(self, u, v):
+        visited = [False] * len(self.vertices)
+        self.dfs_path(u, v, visited, [])
 
-def simple_test():
-    simple_graph = create_simple_graph()
-    starting_node = simple_graph.get_vertex("A")
-    search = DFS()
-    search.execute(simple_graph)
-    search.dfs_visit(starting_node)
-    search.print_spanning_tree()
-    visualize_ungraph(simple_graph)
+# Create a graph given
+# in the above diagram
+g = Graph([0, 1, 2, 3, 4, 5, 6, 7])
+g.add_edge(0, 1)
+g.add_edge(1, 2)
+g.add_edge(2, 3)
+g.add_edge(1, 4)
+g.add_edge(4, 7)
+g.add_edge(1, 5)
+g.add_edge(5, 7)
+g.add_edge(5, 6)
+g.add_edge(6, 7)
 
+#visited = g.dfs(0)
+#print(visited)
+print(g.graph)
+g.dfs_paths(0, 7)
+print(g.paths)
+
+# This code is contributed by Neelam Yadav

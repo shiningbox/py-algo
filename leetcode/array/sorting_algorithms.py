@@ -4,41 +4,39 @@
 # Smaller ones on the left_stack
 # Larger ones on the right_stack
 # Fine-tune left_stack subarray and right_stack subarray
-def quick_sort(l, r, array: list):
+def partition_array(l, h, array):
+    l_i = l
+    h_i = h - 1
+    # scan until left_stack index meets right_stack index
+    # Find smaller elements (less than pivot) that needs to be moved to left_stack sequence
+    # Find larger elements (larger than pivot) that needs to be moved to right_stack sequence
+    while l_i <= h_i:
+        # Find the left_stack index that are larger than pivot, which needs to be swapped
+        while l_i <= h_i and array[l_i] <= array[h]:
+            l_i += 1
+        # Find the right_stack index that are smaller than pivot, which needs to be swapped
+        while l_i <= h_i and array[h_i] >= array[h]:
+            h_i -= 1
+
+        if l_i < h_i:
+            # Swap left_stack index and right_stack index
+            array[l_i], array[h_i] = array[h_i], array[l_i]
+    # Swap the r_
+    array[l_i], array[h] = array[h], array[l_i]
+    return l_i
+
+def quick_sort(l, h, array: list):
     # Find three sequences, L, P, R, bounded by 0, to Pivot -1, Pivot, Pivot + 1 to right_bound
     # Note that, L or R could be none, if less than 3
     # IF sequence size is 0 or 1
     if len(array) < 2:
         return
-
-    if l >= r :
+    if l >= h:
         return
-
-    p = array[r]
-    l_i = l
-    r_i = r - 1
-    # scan until left_stack index meets right_stack index
-    # Find smaller elements (less than pivot) that needs to be moved to left_stack sequence
-    # Find larger elements (larger than pivot) that needs to be moved to right_stack sequence
-    while l_i <= r_i:
-        # Find the left_stack index that are larger than pivot, which needs to be swapped
-        while l_i <= r_i and array[l_i] <= p:
-            l_i += 1
-        # Find the right_stack index that are smaller than pivot, which needs to be swapped
-        while l_i <= r_i and array[r_i] >= p:
-            r_i -= 1
-        if l_i < r_i:
-            # Swap left_stack index and right_stack index
-            temp = array[l_i]
-            array[l_i] = array[r_i]
-            array[r_i] = temp
-    # Swap the r_
-    temp = array[l_i]
-    array[l_i] = array[r]
-    array[r] = temp
+    l_i = partition_array(l, h, array)
     # Sort left_stack sequence
     quick_sort(l, l_i - 1, array)
-    quick_sort(l_i + 1, r, array)
+    quick_sort(l_i + 1, h, array)
 
 
 # Heap sort
@@ -95,6 +93,8 @@ def heap_sort(nums):
 
 array = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
 quick_sort(0, len(array) - 1, array)
+print(array)
+
 array2 = [1, 10, 8, 7, 3, 9, 6, 5, 2, 4]
 heap_sort(array2)
 print(array2)

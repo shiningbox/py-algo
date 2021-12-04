@@ -5,8 +5,8 @@ class Solution:
 
     # newton's method to find the root (f(x) = 0) of a function
     # xk+1 = xk - f(xk) / f'(xk)
-    # f(r) = r ** 2 - x
-    # thus r = r - (r ** 2 - x) / 2r =
+    # f(h) = h ** 2 - x
+    # thus h = h - (h ** 2 - x) / 2r =
     def mySqrt(self, x: int) -> int:
         if x == 0 or x == 1:
             return x

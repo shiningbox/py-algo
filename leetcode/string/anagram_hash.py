@@ -3,6 +3,8 @@ from typing import Optional
 
 class Solution:
 
+
+
     def isAnagram(self, s: str, t: str) -> bool:
         dict_a = {}
         dict_b = {}

@@ -30,8 +30,8 @@ class ArrayQueue(Queue):
     def size(self) -> int:
         # Get Queue size
         # It is a circular array, when:
-        # r >= f: e.g., capacity = 5, r = 3, f = 0, then the size is 5 + 3 % 5 = 3
-        # r <= f: e.g., capacity = 5, r = 1, f = 3, then the size is 5 + 1 - 3 % 5 = 3
+        # h >= f: e.g., capacity = 5, h = 3, f = 0, then the size is 5 + 3 % 5 = 3
+        # h <= f: e.g., capacity = 5, h = 1, f = 3, then the size is 5 + 1 - 3 % 5 = 3
         return (self.capacity + self.r - self.f) % self.capacity
 
     def front(self) -> object:

@@ -198,7 +198,7 @@ def sub_string_test():
 
 def insert_testing():
     string1 = MyString(['a', 'b', 'c', 'd', 'e'])
-    sub_string = MyString(['g', 'q', 'r'])
+    sub_string = MyString(['g', 'q', 'h'])
     new_string = string1.insert(1, sub_string)
     new_string.print()
     string1 = MyString(['a', 'b', 'c', 'd', 'e'])
