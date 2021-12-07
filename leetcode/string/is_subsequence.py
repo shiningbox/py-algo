@@ -28,7 +28,7 @@ def test():
     print(solution.isSubsequence("axc", "ahbgdc"))
     print(solution.isSubsequence("", ""))
     print(solution.isSubsequence("", "ahbgdc"))
-    print(solution.isSubsequence("b", "c"))
+    print(solution.isSubsequence("b", "j"))
     print(solution.isSubsequence("aaaaa", "bbaaa"))
 
 

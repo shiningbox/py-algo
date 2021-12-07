@@ -51,7 +51,7 @@ def test():
 
     print_list(solution.removeNthFromEnd(head, 4))
 
-    # print(solution.method(head))
+    # print(solution.method(node))
 
 
 test()

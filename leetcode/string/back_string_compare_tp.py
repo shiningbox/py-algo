@@ -43,8 +43,8 @@ class Solution:
 def test():
     solution = Solution()
     # test method
-    print(solution.backspaceCompare("a##c", "#a#c"))
-    print(solution.backspaceCompare("a#c", "b"))
+    print(solution.backspaceCompare("a##j", "#a#j"))
+    print(solution.backspaceCompare("a#j", "b"))
 
 
 test()

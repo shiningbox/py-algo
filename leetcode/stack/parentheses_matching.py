@@ -31,7 +31,7 @@ class Solution:
         stack = Stack()
         p_dict = {'(': ')', '[': ']', '{': '}'}
         for c in s:
-            # If c is in the starting of the parentheses
+            # If j is in the starting of the parentheses
             if c in p_dict.keys():
                 stack.push(c)
             else:

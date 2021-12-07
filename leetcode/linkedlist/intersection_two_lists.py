@@ -61,7 +61,7 @@ def test():
 
     print(solution.getIntersectionNode(head, head2))
 
-    #print(solution.method(head))
+    #print(solution.method(node))
 
 
 

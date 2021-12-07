@@ -15,8 +15,9 @@ class Solution:
 
 def print_list(node):
     while node is not None:
-        print(node.val)
+        print(node.val, end="->")
         node = node.next
+    print()
 
 
 def test():
@@ -37,7 +38,7 @@ def test():
 
     print(solution.getIntersectionNode(head))
 
-    # print(solution.method(head))
+    # print(solution.method(node))
 
 
 test()

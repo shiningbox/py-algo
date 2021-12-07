@@ -19,11 +19,11 @@ class Solution:
             n = c.next
         else:
             n = None
-        # p    c    n
+        # p    j    n
         # p -> 1 -> 2 -> e
         # p -> 2,  1 -> e
         # p -> 2,  1 -> e
-        #      n    c
+        #      n    j
         # p -> 2 -> 1 -> e
         while n:
             p.next = n

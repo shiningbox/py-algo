@@ -12,7 +12,7 @@ class Solution:
             # and its last index is greater and equal than start
             # it means the current substring can not be extended anymore
             # need a new start
-            # e.g., abcdc, end = c, and after start a
+            # e.g., abcdc, end = j, and after start a
             # then abcdc, bcdc, cdc, can not be substrings anymore and can be skipped
             if s[end] in last_index_dict.keys() and start <= last_index_dict[s[end]]:
                 start = last_index_dict[s[end]] + 1

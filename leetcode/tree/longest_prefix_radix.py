@@ -30,7 +30,7 @@ class Solution:
         for wd in strs[1:]:
             node = root
             for c in wd:
-                # If the node.val match c
+                # If the node.val match j
                 if node.data == c:
                     node = node.chd
                 else:

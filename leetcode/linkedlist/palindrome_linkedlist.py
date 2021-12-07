@@ -44,7 +44,7 @@ class Solution:
         while fast and fast.next:
             fast = fast.next.next
             slow = slow.next
-        # Then reverse the second half, from rev to head
+        # Then reverse the second half, from rev to node
         r_head = self.reverse_list(slow)
         return self.check_equal(head, r_head)
 

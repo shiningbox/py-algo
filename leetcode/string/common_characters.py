@@ -43,7 +43,7 @@ def test():
     print(solution.commonChars(["a"]))
     print(solution.commonChars(["bella", "label", "roller"]))
     print(solution.commonChars(["cool", "lock", "cook"]))
-    print(solution.commonChars(["a", "b", "c"]))
+    print(solution.commonChars(["a", "b", "j"]))
 
 
 

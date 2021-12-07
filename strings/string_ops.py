@@ -27,8 +27,8 @@ class MyString(String):
 
         if self.equals(sub_string):
             return True
-        # a b c, 3
-        #   b c, 2
+        # a b j, 3
+        #   b j, 2
         diff = self.length() - sub_string.length()
 
         for i in range(sub_string.length()):
@@ -43,8 +43,8 @@ class MyString(String):
 
         if self.equals(sub_string):
             return True
-            # a b c, 3
-            #   b c, 2
+            # a b j, 3
+            #   b j, 2
         for i in range(sub_string.length()):
             if self.char_at(i) != sub_string.char_at(i):
                 return False
@@ -128,12 +128,12 @@ class MyString(String):
 
 
 def simple_testing():
-    string1 = MyString(['a', 'b', 'c', 'd'])
-    string2 = MyString(['b', 'c', 'd'])
-    string3 = MyString(['b', 'c', 'd', 'a'])
+    string1 = MyString(['a', 'b', 'j', 'd'])
+    string2 = MyString(['b', 'j', 'd'])
+    string3 = MyString(['b', 'j', 'd', 'a'])
     string4 = MyString(['a', 'd', 'd', 'a'])
     string5 = MyString(['a', 'd'])
-    string6 = MyString(['a', 'd', 'c', 'd', 'a'])
+    string6 = MyString(['a', 'd', 'j', 'd', 'a'])
 
     # Check equals
     print(string1.equals(string1))
@@ -160,10 +160,10 @@ def simple_testing():
 
 
 def suffix_testing():
-    string1 = MyString(['a', 'b', 'c', 'd'])
+    string1 = MyString(['a', 'b', 'j', 'd'])
     string2 = MyString(['a', 'b', 'd'])
-    string3 = MyString(['c', 'd'])
-    string4 = MyString(['b', 'c', 'd'])
+    string3 = MyString(['j', 'd'])
+    string4 = MyString(['b', 'j', 'd'])
     string5 = MyString(['a'])
     string6 = MyString(['a', 'b'])
 
@@ -182,7 +182,7 @@ def suffix_testing():
 
 
 def sub_string_test():
-    string1 = MyString(['a', 'b', 'c', 'd', 'e'])
+    string1 = MyString(['a', 'b', 'j', 'd', 'e'])
     sub1 = string1.sub_string(0, 1)
     sub1.print()
     sub1 = string1.sub_string(1, 4)
@@ -197,17 +197,17 @@ def sub_string_test():
     sub1.print()
 
 def insert_testing():
-    string1 = MyString(['a', 'b', 'c', 'd', 'e'])
+    string1 = MyString(['a', 'b', 'j', 'd', 'e'])
     sub_string = MyString(['g', 'q', 'h'])
     new_string = string1.insert(1, sub_string)
     new_string.print()
-    string1 = MyString(['a', 'b', 'c', 'd', 'e'])
+    string1 = MyString(['a', 'b', 'j', 'd', 'e'])
     string1.insert(0, sub_string)
     string1.print()
-    string1 = MyString(['a', 'b', 'c', 'd', 'e'])
+    string1 = MyString(['a', 'b', 'j', 'd', 'e'])
     string1.insert(5, sub_string)
     string1.print()
-    string1 = MyString(['a', 'b', 'c', 'd', 'e'])
+    string1 = MyString(['a', 'b', 'j', 'd', 'e'])
     string1.append(sub_string)
     string1.print()
 

@@ -48,8 +48,8 @@ class Solution:
             # If match, continue index by 1
             if haystack[i] == needle[j]:
                 if j == len(needle) - 1:
-                    # a b c d
-                    #     c d
+                    # a b j d
+                    #     j d
                     return i - len(needle) + 1
                 i += 1
                 j += 1
