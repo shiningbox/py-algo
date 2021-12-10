@@ -1,7 +1,6 @@
 from typing import List
 from typing import Optional
 
-
 class TreeNode:
 
     def __init__(self, val=0, left=None, right=None):
@@ -9,9 +8,7 @@ class TreeNode:
          self.left = left
          self.right = right
 
-
- 
-
+# Print the tree
 def pre_order_traversal(node: TreeNode, indent):
     # Root
     if node:
@@ -24,21 +21,23 @@ def pre_order_traversal(node: TreeNode, indent):
     # Right
     pre_order_traversal(node.right, indent)
 
+
+class Solution:
+
+    def buildTree(self, inorder, postorder):
+        if inorder:
+            last = postorder.pop()
+            idx = inorder.index(last)
+            root = TreeNode(inorder[idx])
+            root.right = self.buildTree(inorder[idx + 1:], postorder)
+            root.left = self.buildTree(inorder[0:idx], postorder)
+            return root
+
 def test():
     solution = Solution()
-    res = solution.generateTrees(1)
-    print(len(res))
-    for root in res:
-        pre_order_traversal(root, "")
     # test method
-    res = solution.generateTrees(3)
-    print(len(res))
-    for root in res:
-        pre_order_traversal(root, "")
+    root = solution.buildTree([9,3,15,20,7], [9,15,7,20,3])
+    pre_order_traversal(root, "")
 
-    res = solution.generateTrees(4)
-    print(len(res))
-    for root in res:
-        pre_order_traversal(root, "")
 
 test()
