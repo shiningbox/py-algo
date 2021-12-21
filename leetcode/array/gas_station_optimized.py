@@ -3,41 +3,36 @@ from typing import Optional
 
 class Solution:
 
-    def cicular_travel(self, current, gas, tank, cost):
+    """
 
-        start = current
-        tank = tank + gas[current] - cost[current]
-        next = (start + 1) % len(gas)
-        reached = -1
-        # Can go next
-        while tank >= 0:
-            if next == start:
-                reached = start
-                break
-            current = next
-            next = (next + 1) % len(gas)
-            tank = tank + gas[current] - cost[current]
+        Suppose from cur -> i - 1, with some positive tank (can not be negative), meaning can go from res to i - 1 with
+        some more gas
 
-        return reached
+        If i makes tank negative, gas[i] is less than cost[i], and diff is bigger than tank
+
+        Since each tank between cur and i-1 is positive, subtracting any accumulation from res to j
+        (an index between res to i-1) will make diff bigger than the accumulation even more,
+        thus definitely negative to start from any j, between res and i-1
+
+        i also can not be selected because its gas[i] < cost[i]
+
+        Then the only next position is from i + 1
+
+    """
 
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        idx_dict = {}
-        idx = 0
-        for num in gas:
-            if num not in idx_dict:
-                idx_dict[num] = [idx]
-            else:
-                idx_dict[num].append(idx)
-            idx += 1
-
-        gas_sorted = list(gas)
-        gas_sorted.sort()
-        for i in range(len(gas_sorted) - 1, -1, -1):
-            res = self.cicular_travel(idx_dict[gas_sorted[i]].pop(), gas, 0, cost)
-            if res != -1:
-                return res
-        return -1
-
+        tank = 0
+        res = 0
+        total_accum = 0
+        for i in range(len(gas)):
+            tank += gas[i] - cost[i]
+            # Then start from i + 1 because any place from res to i can not be selected (hit an negative)
+            if tank < 0:
+                total_accum += tank
+                tank = 0
+                res = i + 1
+        total_accum += tank
+        return -1 if total_accum < 0 else res
 
 def test():
     solution = Solution()

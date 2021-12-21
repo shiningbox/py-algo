@@ -1,4 +1,43 @@
 
+
+def merge(seq1, seq2):
+    # Merge two sorted list
+    seq = []
+    while seq1 and seq2:
+        if seq1[0] <= seq2[0]:
+            top = seq1.pop(0)
+            seq.append(top)
+        else:
+            top = seq2.pop(0)
+            seq.append(top)
+    if not seq1:
+        seq += seq2
+    if not seq2:
+        seq += seq1
+    return seq
+
+# merge sorting
+def merge_sort(nums):
+
+    # If the sequence has only one element,
+    # return it as the end of recursion call
+
+    if len(nums) < 2:
+        return nums
+
+    # Divide
+    seq1, seq2 = nums[:len(nums) // 2], nums[len(nums) // 2:]
+
+    # Conquer: sort the first sequence
+    sorted_seq1 = merge_sort(seq1)
+
+    # Conquer: sort the second sequence
+    sorted_seq2 = merge_sort(seq2)
+
+    # Merge: merge seq1 and seq2
+    return merge(sorted_seq1, sorted_seq2)
+
+
 # Divide and conquer
 # Choose pivot
 # Smaller ones on the left_stack
@@ -92,9 +131,16 @@ def heap_sort(nums):
 
 
 array = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
-quick_sort(0, len(array) - 1, array)
-print(array)
+#quick_sort(0, len(array) - 1, array)
+#print(array)
 
 array2 = [1, 10, 8, 7, 3, 9, 6, 5, 2, 4]
-heap_sort(array2)
-print(array2)
+#heap_sort(array2)
+#print(array2)
+
+
+seq1 = [1, 2, 5, 6]
+seq2 = [2, 3, 4, 7, 9]
+
+
+print(merge_sort(array2))

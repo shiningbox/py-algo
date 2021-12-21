@@ -2,7 +2,9 @@ from typing import List
 from typing import Optional
 
 class Solution:
-    pass
+
+    def numIslands(self, grid: List[List[str]]) -> int:
+        pass
 
 
 def test():
