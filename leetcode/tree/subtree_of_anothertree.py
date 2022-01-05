@@ -23,31 +23,44 @@ def pre_order_traversal(node: TreeNode, indent):
 
 
 class Solution(object):
-    def isSubtree(self, a, b):
-        if not b:
+
+    def check_tree(self, root1, root2):
+        if not root1 and not root2:
+            return True
+        elif root1 and not root2 or root2 and not root1:
+            return False
+
+        if root1.val != root2.val:
+            return False
+
+        return self.check_tree(root1.left, root2.left) and self.check_tree(root1.right, root2.right)
+
+    def dfs(self, t, s):
+
+        if not t:
+            return False
+
+        stack = [t]
+        while stack:
+
+            top = stack.pop()
+
+            if not top:
+                continue
+
+            if top.val == s.val and self.check_tree(top, s):
+                return True
+
+            stack.append(top.right)
+            stack.append(top.left)
+
+        return False
+
+    def isSubtree(self, t, s):
+        if not s:
             return True
 
-        def checkTree(root1, root2):
-            if not root1 and not root2:
-                return True
-            elif root1 and not root2 or root2 and not root1:
-                return False
-
-            if root1.val != root2.val:
-                return False
-
-            return checkTree(root1.left, root2.left) and checkTree(root1.right, root2.right)
-
-        def dfs(s, t):
-            if not s:
-                return False
-
-            if s.val == t.val and checkTree(s, t):
-                return True
-
-            return dfs(s.left, t) or dfs(s.right, t)
-
-        return dfs(a, b)
+        return self.dfs(t, s)
 
 def test():
     solution = Solution()
