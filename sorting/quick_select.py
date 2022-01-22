@@ -33,6 +33,7 @@ class QuickSelect:
         # Select K in the L sequence
         if k <= l_seq.size():
             return QuickSelect.select_k(k, l_seq)
+
         # Return the pivot
         elif k <= l_seq.size() + e_seq.size():
             return pivot
