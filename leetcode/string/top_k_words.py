@@ -63,74 +63,58 @@ class SortedTire:
         else:
             node.count = 1
 
-    def find(self, key: str):
-        node = self.root
-        """Find value by key in node."""
-        for char in key:
-            found = False
-            # If char is in one of children
-            # Move to its children
-            for child in node.children:
-                if child.key == char:
-                    found = True
-                    node = child
-                    break
-
-            if not found:
-                return None
-
-        return node.count
-
-    def print_tires(self, node, indent):
-
-        if not node:
-            return None
-
-        if node.count:
-            print(indent + node.key + " " + str(node.count))
-        else:
-            print(indent + node.key)
-
-        for child in node.children:
-            self.print_tires(child, indent + "-")
-
     def dfs_tires(self, node, path):
 
         if not node:
             return None
 
-        path += node.key
+        if node.key != "-":
+            path += node.key
 
         if node.count:
-            if not self.node_counts[node.count]:
-                self.node_counts[node.count] = [node.key]
+            idx = node.count
+            if not self.node_counts[idx]:
+                self.node_counts[idx] = [path]
             else:
-                self.node_counts[node.count].append(path)
+                self.node_counts[idx].append(path)
 
         for child in node.children:
             self.dfs_tires(child, path)
 
     def find_counts(self, n):
-        self.node_counts = [None] * n
+        self.node_counts = [None] * (n + 1)
         self.dfs_tires(self.root, "")
 
 
 class Solution:
 
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        pass
+        tires = SortedTire()
+
+        for key in words:
+            tires.insert(key)
+
+        tires.find_counts(len(words))
+        counts = tires.node_counts
+        res = []
+        for i in range(len(counts) - 1, -1, -1):
+            if counts[i]:
+                for word in counts[i]:
+                    if len(res) < k:
+                        res.append(word)
+                    else:
+                        return res
+        return res
 
 
 def test():
     solution = Solution()
     # test method
-    #print(solution.topKFrequent(["i", "love", "leetcode", "i", "love", "coding"], 2))
-    root = Node("-")
-    insert(root, "coding")
-    insert(root, "i")
-    insert(root, "i")
-    insert(root, "love")
-    insert(root, "love")
-    print_tires(root, "")
+    print(solution.topKFrequent(["i", "love", "leetcode", "i", "love", "coding"], 2))
+    print(solution.topKFrequent(["the","day","is","sunny","the","the","the","sunny","is","is"], 4))
+    print(solution.topKFrequent(["the", "the"], 1))
+    print(solution.topKFrequent(["the"], 1))
+
+
 
 test()
