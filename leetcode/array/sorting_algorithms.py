@@ -3,17 +3,25 @@
 def merge(seq1, seq2):
     # Merge two sorted list
     seq = []
-    while seq1 and seq2:
-        if seq1[0] <= seq2[0]:
-            top = seq1.pop(0)
-            seq.append(top)
+
+    i = j = 0
+
+    while i < len(seq1) and j < len(seq2):
+        if seq1[i] <= seq2[j]:
+            seq.append(seq1[i])
+            i += 1
         else:
-            top = seq2.pop(0)
-            seq.append(top)
-    if not seq1:
-        seq += seq2
-    if not seq2:
-        seq += seq1
+            seq.append(seq2[j])
+            j += 1
+
+    if i >= len(seq1):
+        seq += seq2[j:]
+
+    if j >= len(seq2):
+        seq += seq1[i:]
+
+    del seq1
+    del seq2
     return seq
 
 # merge sorting
@@ -137,10 +145,6 @@ array = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2]
 array2 = [1, 10, 8, 7, 3, 9, 6, 5, 2, 4]
 #heap_sort(array2)
 #print(array2)
-
-
-seq1 = [1, 2, 5, 6]
-seq2 = [2, 3, 4, 7, 9]
 
 
 print(merge_sort(array2))

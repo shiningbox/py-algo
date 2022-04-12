@@ -8,11 +8,10 @@ class TreeNode:
         self.children = children
 
 
-
 class Solution:
 
-    def __init__(self):
-        self.letter_dict = {}
+    letter_dict = {}
+    paths = []
 
     def generate_phone_dict(self):
         letter_dict = {}
@@ -35,25 +34,8 @@ class Solution:
 
         return letter_dict
 
-    def get_children(self, i, digits):
-        if i <= len(digits) - 2:
-            return self.letter_dict[digits[i + 1]]
-        else:
-            return None
+    def get_paths(self, idx, node, digits, path):
 
-    def pre_order_traversal(self, i, node, digits, indent):
-        # Root
-        if node:
-            print(f"{indent}'{node}'")
-        else:
-            return
-        indent = indent + "-"
-        children = self.get_children(i, digits)
-        if children:
-            for child in children:
-                self.pre_order_traversal(i+1, child, digits, indent)
-
-    def get_paths(self, i, node, digits, path, paths):
         # Root
         if node:
             if node != '*':
@@ -61,28 +43,31 @@ class Solution:
         else:
             return
 
-        children = self.get_children(i, digits)
-        if children:
+        if idx <= len(digits) - 1:
+            # if digits is not none
+            children = self.letter_dict[digits[idx]]
             for child in children:
-                self.get_paths(i+1, child, digits, path, paths)
+                self.get_paths(idx+1, child, digits, path)
         else:
-            paths.append(str(path))
+            self.paths.append(str(path))
+
 
     def letterCombinations(self, digits: str) -> List[str]:
-
         if not digits:
             return []
-
         self.letter_dict = self.generate_phone_dict()
-        path = ""
-        paths = []
-        self.get_paths(-1, "*", digits, path, paths)
-        return paths
+        self.paths = []
+        self.get_paths(0, "*", digits, "")
+
+        return self.paths
+
 
 def test():
     solution = Solution()
     # test method
     print(solution.letterCombinations("23"))
+    print(solution.letterCombinations("234"))
     print(solution.letterCombinations(""))
+
 
 test()

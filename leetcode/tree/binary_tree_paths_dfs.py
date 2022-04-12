@@ -24,6 +24,61 @@ def pre_order_traversal(node: TreeNode, indent):
     pre_order_traversal(node.right, indent)
 
 
+def dfs(node):
+    res = []
+    if not node:
+        return res
+
+    stack = [node]
+
+    while stack:
+        top = stack.pop()
+
+        if not top:
+            continue
+        res.append(top)
+        stack.append(top.right)
+        stack.append(top.left)
+
+    return res
+
+
+def bfs(node):
+    res = []
+    if not node:
+        return res
+
+    stack = [node]
+
+    while stack:
+        top = stack.pop(0)
+
+        if not top:
+            continue
+        res.append(top)
+        stack.append(top.left)
+        stack.append(top.right)
+
+    return res
+
+def dfs_recursion(node, res):
+    if not node:
+        return
+
+    res.append(node)
+    dfs_recursion(node.left, res)
+    dfs_recursion(node.right, res)
+
+
+def bfs_recursion(node, res):
+    if not node:
+        return
+
+    res.append(node)
+    dfs_recursion(node.left, res)
+    dfs_recursion(node.right, res)
+
+
 class Solution:
 
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
@@ -39,6 +94,8 @@ class Solution:
             if node.left:
                 stack.append((node.left, ls + str(node.val) + "->"))
         return res
+
+
 
 def test():
     solution = Solution()
@@ -63,8 +120,24 @@ def test():
 
     root2 = TreeNode(0, None, None)
 
-    print(solution.binaryTreePaths(root1))
-    print(solution.binaryTreePaths(root2))
+    #print(solution.binaryTreePaths(root1))
+    #print(solution.binaryTreePaths(root2))
+    pre_order_traversal(root1, "")
+    res = dfs(root1)
+    for node in res:
+        print(node.val, end="-")
+    res = []
+    print(" ")
+    dfs_recursion(root1, res)
+    for node in res:
+        print(node.val, end="-")
+    print(" ")
+    res = bfs(root1)
+    for node in res:
+        print(node.val, end="-")
+    print(" ")
+
+
 
 
 test()
