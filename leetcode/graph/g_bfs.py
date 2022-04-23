@@ -26,14 +26,11 @@ def bfs_deque(visited):
         # pop all nodes at the same level
         for _ in range(size):
             top = queue.popleft()
-            if top not in visited:
-                # visit top
-                visited[top] = True
+            visited[top] = True
             # if top has adjacent neighbors
             if top in graph:
                 for neighbor in graph[top]:
                     if neighbor not in visited:
-                        visited[neighbor] = True
                         queue.append(neighbor)
 
 print(graph)
