@@ -1,52 +1,43 @@
 from collections import deque
 
-
-def convert_list_to_matrix(g_list):
-    nodes = set()
-    for edge in g_list:
-        nodes.add(edge[0])
-        nodes.add(edge[1])
-    graph_2d = [[0 for _ in range(len(nodes))] for _ in range(len(nodes))]
-    for edge in g_list:
-        s = edge[0]
-        d = edge[1]
-        graph_2d[s][d] = 1
-    return graph_2d
-
-
 # Toplogical sort a graph
 # Use
-def toplogical_sorting(graph) -> list:
-    # Use an incoming array to track the incomings for each node
-    node_size = len(graph)
-    ins = [0] * node_size
+def toplogical_sorting(edge_list) -> list:
+    nodes = set()
     res = []
+    g = {}
+    for edge in edge_list:
+        nodes.add(edge[0])
+        nodes.add(edge[1])
+        if edge[0] not in g:
+            g[edge[0]] = []
+        if edge[1] not in g:
+            g[edge[1]] = []
+        g[edge[0]].append(edge[1])
 
-    # Use a stack to store the node with incoming == 0, as the starting point
+    size = len(nodes)
+    ins = [0] * size
     queue = deque()
-    for i in range(node_size):
-        col = [row[i] for row in graph]
-        ins[i] = sum(col)
-        # This node has no incoming
+    # Find incoming values for ins
+    for edge in edge_list:
+        ins[edge[1]] += 1
+
+    for i in ins:
         if ins[i] == 0:
             queue.append(i)
-
-    # For each node whose
+    print(g)
     while queue:
-        # Pop the early inserted node with incoming == 0
-        top = queue.popleft()
-        res.append(top)
-        # Disconnect it from all its neighbors
-        for c in range(node_size):
-            if graph[top][c] == 1:
-                graph[top][c] = 0
-                ins[c] -= 1
-                if ins[c] == 0:
-                    queue.append(c)
-
+        # pop the head with incoming == 0
+        head = queue.popleft()
+        res.append(head)
+        # Now disconnect head with its ongoing nodes
+        for neighbor in g[head]:
+            ins[neighbor] -= 1
+            # Push the neighbor with incoming == 0 to the queue
+            if ins[neighbor] == 0:
+                queue.append(neighbor)
     return res
 
 
 edge_list = [(0, 1), (1, 2), (2, 5), (1, 3), (3, 4), (1, 6), (4, 6), (4, 5), (5, 7)]
-graph = convert_list_to_matrix(edge_list)
-print(toplogical_sorting(graph))
+print(toplogical_sorting(edge_list))
