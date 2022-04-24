@@ -9,6 +9,7 @@ class Solution:
 
     def dfs(self, i, j):
 
+        # Check if i, j not exceed boundary
         if i < 0 or j < 0 or i >= len(self.grid) \
                 or j >= len(self.grid[0]):
             return
@@ -32,9 +33,10 @@ class Solution:
 
         for i in range(self.m):
             for j in range(self.n):
+                # Found a land, try to explore its surroundings using DFS
                 if grid[i][j] == "1":
-                        self.dfs(i, j)
-                        count += 1
+                    self.dfs(i, j)
+                    count += 1
 
         return count
 

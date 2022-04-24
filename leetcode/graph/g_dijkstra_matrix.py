@@ -14,18 +14,6 @@ def convert_list_to_matrix(g_list):
         graph_2d[s][d] = w
     return graph_2d
 
-
-# Find the non-visited node with min distance
-def find_min_distance(d, visited):
-    min_d = 100
-    min_i = -1
-    for i in range(len(d)):
-        if not visited[i] and d[i] <= min_d:
-            min_d = d[i]
-            min_i = i
-    return min_i
-
-
 # Gradually building a min distance cloud
 # - Starting with the start node s, update the size of the cloud to the distance of its nearest neighbor
 # - Move to its nearest neighbor i, continue expanding the cloud with its nearest neighbor j
@@ -58,7 +46,6 @@ def dijkstra(start, graph: list) -> list:
                     # Update the min distance from source
                     min_ds[neighbor] = min(min_ds[neighbor], min_ds[head] + neighbor_dist)
                     queue.append(neighbor)
-    print(min_ds)
     return min_ds
 
 
